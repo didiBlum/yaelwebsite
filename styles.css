@@ -1,0 +1,359 @@
+:root {
+    --primary: #5D9C59;
+    --secondary: #FFB84C;
+    --accent: #A8DF8E;
+    --text: #2C3E50;
+    --background: #F7F7F7;
+    --light-green: #E8F5E9;
+    --light-yellow: #FFF8E1;
+    --soft-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    --border-color: rgba(0,0,0,0.1);
+    --section-separator: linear-gradient(to right, transparent, rgba(93, 156, 89, 0.1), transparent);
+    --base-font-size: clamp(18px, 5vw, 22px);
+}
+
+html {
+    font-size: var(--base-font-size);
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Assistant', sans-serif;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background);
+    color: var(--text);
+    padding-top: 0;
+}
+
+header {
+    background-color: white;
+    padding: 15px 0;
+    box-shadow: var(--soft-shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    font-family: 'Heebo', sans-serif;
+    font-size: clamp(1.5rem, 5vw, 1.8rem);
+    font-weight: 600;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.header-contact {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.header-contact a {
+    color: var(--primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: clamp(0.8rem, 3vw, 0.9rem);
+    transition: color 0.3s ease;
+}
+
+.header-contact a:hover {
+    color: var(--accent);
+}
+
+.header-contact img {
+    width: 20px;
+    height: 20px;
+}
+
+.header-text {
+    text-align: center;
+    flex-grow: 1;
+}
+
+header h1 {
+    font-family: 'Heebo', sans-serif;
+    font-weight: 600;
+    font-size: 2.2rem;
+    margin: 0;
+    color: var(--primary);
+}
+
+header h2 {
+    font-family: 'Heebo', sans-serif;
+    font-weight: 300;
+    font-size: 1.2rem;
+    margin: 10px 0 0;
+    color: var(--text);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hero {
+    padding: 80px 0;
+    background: url('images/stones.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    position: relative;
+}
+
+.hero::before {
+    display: none;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-family: 'Heebo', sans-serif;
+    font-size: clamp(1.8rem, 6vw, 2.8rem);
+    margin-bottom: 20px;
+    font-weight: 300;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero p {
+    font-size: clamp(1rem, 4vw, 1.3rem);
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.section {
+    padding: 80px 0;
+    position: relative;
+    scroll-margin-top: 100px;
+}
+
+.section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    right: 20%;
+    height: 1px;
+    background: var(--section-separator);
+}
+
+.section:last-child::after {
+    display: none;
+}
+
+.section-alt {
+    background-color: var(--light-green);
+}
+
+.therapy-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: var(--soft-shadow);
+    margin-bottom: 30px;
+    transition: transform 0.3s ease;
+}
+
+.therapy-card:hover {
+    transform: translateY(-5px);
+}
+
+.therapy-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.benefit-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: var(--soft-shadow);
+    text-align: center;
+}
+
+.benefit-card img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+}
+
+.contact-section {
+    background: linear-gradient(135deg, #E8F5E9, #A8DF8E);
+    color: var(--text);
+    padding: 60px 0;
+    text-align: center;
+    position: relative;
+}
+
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20%;
+    right: 20%;
+    height: 1px;
+    background: var(--section-separator);
+}
+
+.contact-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.contact-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: white;
+    color: var(--text);
+    padding: 15px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: var(--soft-shadow);
+    font-size: clamp(0.9rem, 3vw, 1rem);
+}
+
+.contact-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.contact-button img {
+    width: 24px;
+    height: 24px;
+}
+
+h2 {
+    font-family: 'Heebo', sans-serif;
+    color: var(--primary);
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    margin-bottom: 30px;
+    font-weight: 600;
+    text-align: center;
+}
+
+h3 {
+    font-family: 'Heebo', sans-serif;
+    color: var(--primary);
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 60px 0;
+    background: white;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.profile-image {
+    width: 250px;
+    height: 250px;
+    border-radius: 15px;
+    object-fit: cover;
+    box-shadow: var(--soft-shadow);
+    flex-shrink: 0;
+  }
+
+.profile-header h2 {
+    margin: 0;
+    text-align: right;
+}
+
+.profile-content {
+    font-size: 1.4rem;
+    line-height: 1.8;
+}
+
+.profile-content p {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .profile-header h2 {
+        text-align: center;
+    }
+
+    .profile-image {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+    }
+
+    .profile-content {
+        text-align: center;
+        font-size: 1.2rem;
+    }
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 10px;
+    margin-right: auto;
+}
+
+.mobile-menu-close {
+    display: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    color: var(--primary);
+    cursor: pointer;
+} 
