@@ -125,33 +125,48 @@ header {
 /* Mobile Menu Styles */
 .mobile-menu-btn {
     display: none;
-    background: none;
-    border: none;
+    background: white;
+    border: 2px solid var(--primary);
     cursor: pointer;
     padding: 10px;
     flex-direction: column;
     justify-content: space-around;
-    width: 30px;
-    height: 30px;
+    width: 44px;
+    height: 44px;
     align-items: center;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(93, 156, 89, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
 }
 
 .hamburger-line {
-    width: 25px;
-    height: 3px;
+    width: 18px;
+    height: 2px;
     background-color: var(--primary);
     transition: all 0.3s ease;
-    border-radius: 2px;
+    border-radius: 1px;
+}
+
+.mobile-menu-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(93, 156, 89, 0.3);
+    border-color: var(--accent);
 }
 
 .mobile-menu-btn:hover .hamburger-line {
     background-color: var(--accent);
 }
 
+.mobile-menu-btn:active {
+    transform: translateY(0);
+}
+
 /* Hamburger animation when menu is open */
 .mobile-menu.active + .header-content .mobile-menu-btn .hamburger-line:nth-child(1),
 body.menu-open .mobile-menu-btn .hamburger-line:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+    transform: rotate(45deg) translate(4px, 4px);
+    background-color: var(--accent);
 }
 
 .mobile-menu.active + .header-content .mobile-menu-btn .hamburger-line:nth-child(2),
@@ -161,7 +176,15 @@ body.menu-open .mobile-menu-btn .hamburger-line:nth-child(2) {
 
 .mobile-menu.active + .header-content .mobile-menu-btn .hamburger-line:nth-child(3),
 body.menu-open .mobile-menu-btn .hamburger-line:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -6px);
+    transform: rotate(-45deg) translate(4px, -4px);
+    background-color: var(--accent);
+}
+
+/* Button state when menu is open */
+.mobile-menu.active + .header-content .mobile-menu-btn,
+body.menu-open .mobile-menu-btn {
+    background: var(--light-green);
+    border-color: var(--accent);
 }
 
 .mobile-menu {
@@ -171,10 +194,24 @@ body.menu-open .mobile-menu-btn .hamburger-line:nth-child(3) {
     right: 0;
     width: 100%;
     height: 100vh;
-    background-color: white;
+    background: linear-gradient(135deg, rgba(248, 249, 250, 0.95), rgba(232, 245, 233, 0.9));
     z-index: 2000;
-    padding: 80px 20px 20px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    padding: 100px 20px 20px;
+    box-shadow: 0 0 30px rgba(93, 156, 89, 0.1);
+    backdrop-filter: blur(15px);
+    animation: slideInRight 0.4s ease-out;
+    border-left: 1px solid rgba(93, 156, 89, 0.1);
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 .mobile-menu.active {
@@ -183,13 +220,35 @@ body.menu-open .mobile-menu-btn .hamburger-line:nth-child(3) {
 
 .mobile-menu-close {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    background: none;
-    border: none;
-    font-size: 2rem;
+    top: 25px;
+    right: 25px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid var(--primary);
+    font-size: 1.6rem;
     color: var(--primary);
     cursor: pointer;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(93, 156, 89, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: bold;
+    backdrop-filter: blur(10px);
+}
+
+.mobile-menu-close:hover {
+    transform: scale(1.05) rotate(90deg);
+    box-shadow: 0 6px 20px rgba(93, 156, 89, 0.3);
+    background: rgba(93, 156, 89, 0.1);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.mobile-menu-close:active {
+    transform: scale(0.95) rotate(90deg);
 }
 
 .mobile-nav-list {
@@ -208,13 +267,43 @@ body.menu-open .mobile-menu-btn .hamburger-line:nth-child(3) {
     font-size: 1.2rem;
     font-weight: 500;
     display: block;
-    padding: 15px 0;
-    border-bottom: 1px solid var(--light-green);
-    transition: color 0.3s ease;
+    padding: 18px 20px;
+    margin: 6px 0;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(93, 156, 89, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(93, 156, 89, 0.08);
+    backdrop-filter: blur(5px);
+}
+
+.mobile-nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(93, 156, 89, 0.05), transparent);
+    transition: left 0.6s ease;
+}
+
+.mobile-nav-link:hover::before {
+    left: 100%;
 }
 
 .mobile-nav-link:hover {
     color: var(--primary);
+    transform: translateX(8px);
+    background: rgba(93, 156, 89, 0.05);
+    border-color: var(--accent);
+    box-shadow: 0 4px 15px rgba(93, 156, 89, 0.12);
+}
+
+.mobile-nav-link:active {
+    transform: translateX(4px) scale(0.99);
 }
 
 .header-text {
@@ -528,8 +617,6 @@ h3 {
     
     .mobile-menu-btn {
         display: flex !important;
-        background-color: rgba(255, 0, 0, 0.1) !important; /* Temporary debug color */
-        border: 2px solid red !important; /* Temporary debug border */
     }
     
     .header-contact {
