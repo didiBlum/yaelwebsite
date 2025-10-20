@@ -15,6 +15,9 @@
 html {
     font-size: var(--base-font-size);
     scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -25,6 +28,58 @@ body {
     background-color: var(--background);
     color: var(--text);
     padding-top: 0;
+    contain: layout style;
+    content-visibility: auto;
+    font-display: swap;
+}
+
+/* Skip link for accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--primary);
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 4px;
+    z-index: 10000;
+    font-weight: 600;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 6px;
+}
+
+/* Focus styles for better accessibility */
+*:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+button:focus,
+a:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --primary: #2D5016;
+        --text: #000000;
+        --background: #FFFFFF;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
 
 header {
@@ -201,6 +256,7 @@ body.menu-open .mobile-menu-btn {
     backdrop-filter: blur(15px);
     animation: slideInRight 0.4s ease-out;
     border-left: 1px solid rgba(93, 156, 89, 0.1);
+    will-change: transform, opacity;
 }
 
 @keyframes slideInRight {
@@ -335,12 +391,14 @@ header h2 {
 
 .hero {
     padding: 80px 0;
-    background: url('images/stones.jpg');
+    background: url('images/stones-webp-ultra.webp'), url('images/stones-optimized.jpg');
     background-size: cover;
     background-position: center;
+    background-attachment: scroll;
     color: white;
     text-align: center;
     position: relative;
+    contain: layout style paint;
 }
 
 .hero::before {
@@ -403,14 +461,17 @@ header h2 {
 
 .therapy-card:hover {
     transform: translateY(-5px);
+    will-change: transform;
 }
 
 .therapy-image {
     width: 100%;
-    height: 250px;
+    aspect-ratio: 1200/800;
     object-fit: cover;
     border-radius: 10px;
     margin-bottom: 20px;
+    background-color: #f0f0f0;
+    max-height: 400px;
 }
 
 .benefits-grid {
@@ -468,6 +529,7 @@ header h2 {
 .contact-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    will-change: transform;
 }
 
 .contact-button img {
@@ -482,6 +544,7 @@ h2 {
     margin-bottom: 30px;
     font-weight: 600;
     text-align: center;
+    font-display: swap;
 }
 
 h3 {
@@ -505,12 +568,14 @@ h3 {
 }
 
 .profile-image {
-    width: 250px;
-    height: 250px;
+    width: min(250px, 80vw);
+    aspect-ratio: 1/1;
     border-radius: 15px;
     object-fit: cover;
     box-shadow: var(--soft-shadow);
     flex-shrink: 0;
+    background-color: #f0f0f0;
+    max-width: 100%;
   }
 
 .profile-header h2 {
@@ -586,6 +651,8 @@ h3 {
     transition: all 0.3s ease;
     font-weight: 600;
     font-size: 14px;
+    will-change: transform;
+    contain: layout style paint;
 }
 
 .floating-whatsapp:hover {
@@ -627,7 +694,8 @@ h3 {
         justify-content: space-between;
     }
 }
-    
+
+@media (max-width: 768px) {
     .profile-header {
         flex-direction: column;
         text-align: center;
@@ -639,13 +707,26 @@ h3 {
     }
 
     .profile-image {
-        width: 200px;
-        height: 200px;
+        width: min(200px, 60vw);
         margin: 0 auto;
     }
 
     .profile-content {
         text-align: center;
         font-size: 1.2rem;
+    }
+    
+    .therapy-image {
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .therapy-image {
+        max-height: 250px;
+    }
+    
+    .profile-image {
+        width: min(150px, 50vw);
     }
 }

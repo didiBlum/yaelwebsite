@@ -54,12 +54,16 @@ if (mobileMenuBtn && mobileMenuClose && mobileMenu) {
         mobileMenu.classList.add('active');
         document.body.classList.add('menu-open');
         document.body.style.overflow = 'hidden';
+        mobileMenuBtn.setAttribute('aria-expanded', 'true');
+        mobileMenuBtn.setAttribute('aria-label', 'סגור תפריט ניווט');
     });
 
     mobileMenuClose.addEventListener('click', () => {
         mobileMenu.classList.remove('active');
         document.body.classList.remove('menu-open');
         document.body.style.overflow = '';
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenuBtn.setAttribute('aria-label', 'פתח תפריט ניווט');
     });
 
     // Close mobile menu when clicking on a link
@@ -69,6 +73,8 @@ if (mobileMenuBtn && mobileMenuClose && mobileMenu) {
             mobileMenu.classList.remove('active');
             document.body.classList.remove('menu-open');
             document.body.style.overflow = '';
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            mobileMenuBtn.setAttribute('aria-label', 'פתח תפריט ניווט');
         });
     });
 
@@ -80,6 +86,35 @@ if (mobileMenuBtn && mobileMenuClose && mobileMenu) {
             mobileMenu.classList.remove('active');
             document.body.classList.remove('menu-open');
             document.body.style.overflow = '';
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            mobileMenuBtn.setAttribute('aria-label', 'פתח תפריט ניווט');
+        }
+    });
+
+    // Keyboard navigation for mobile menu
+    mobileMenuBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            mobileMenuBtn.click();
+        }
+    });
+
+    mobileMenuClose.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            mobileMenuClose.click();
+        }
+    });
+
+    // Trap focus in mobile menu when open
+    document.addEventListener('keydown', (e) => {
+        if (mobileMenu.classList.contains('active') && e.key === 'Escape') {
+            mobileMenu.classList.remove('active');
+            document.body.classList.remove('menu-open');
+            document.body.style.overflow = '';
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            mobileMenuBtn.setAttribute('aria-label', 'פתח תפריט ניווט');
+            mobileMenuBtn.focus();
         }
     });
 }
